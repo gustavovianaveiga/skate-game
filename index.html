@@ -9,7 +9,7 @@
 
 <body>
     <div class="canvas">
-        <img src="./gif 15ms.gif" class='skatista'>
+        <img src="./gif 15ms.gif" class='skatista jump'>
         <img src="./caixote.png" class='caixote'>
     </div>
     <style>
@@ -41,12 +41,34 @@
             left: 100px;
         }
         
+        .jump {
+            animation: jump 1s ease-out;
+        }
+        
         .caixote {
             width: 70px;
             position: absolute;
             bottom: 0;
             <!-- animation: caixote 5s linear infinite;
             -->
+        }
+        
+        @keyframes jump {
+            0% {
+                bottom: 0px
+            }
+            40% {
+                bottom: 80px
+            }
+            50% {
+                bottom: 90px
+            }
+            60% {
+                bottom: 80px
+            }
+            100% {
+                bottom: 0px
+            }
         }
         
         @keyframes caixote {
