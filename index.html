@@ -10,6 +10,7 @@
 <body>
     <div class="canvas">
         <img src="./gif 15ms.gif" class='skatista'>
+        <img src="./caixote.png" class='caixote'>
     </div>
     <style>
         html {
@@ -38,6 +39,23 @@
             position: absolute;
             bottom: 0;
             left: 100px;
+        }
+        
+        .caixote {
+            width: 70px;
+            position: absolute;
+            bottom: 0;
+            <!-- animation: caixote 5s linear infinite;
+            -->
+        }
+        
+        @keyframes caixote {
+            to {
+                left: -20%
+            }
+            from {
+                left: 120%
+            }
         }
     </style>
     <script></script>
