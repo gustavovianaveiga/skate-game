@@ -107,10 +107,10 @@
             const caixotepos = +window.getComputedStyle(caixote).left.replace('px', '');
             const skatistapos = +window.getComputedStyle(skatista).bottom.replace('px', '');
 
-            if (skatistapos >= 109) {
-                const value = +score.innerHTML
-                score.innerHTML = (value + 1);
-            };
+
+            const value = +score.innerHTML
+            score.innerHTML = (value + 1);
+
 
 
             if (caixotepos <= 170 && skatistapos < 64 && caixotepos > 10) {
@@ -121,6 +121,7 @@
                 skatista.style.animation = 'none';
                 caixote.style.left = caixotepos + 'px';
                 skatista.style.bottom = skatistapos + 'px';
+                score.innerHTML = (value);
 
 
             }
