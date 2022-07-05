@@ -9,10 +9,16 @@
 
 <body>
     <div class="canvas">
-        <img src="./gif 15ms.gif" class='skatista jump'>
+        <img src="./gif 15ms.gif" class='skatista'>
         <img src="./caixote.png" class='caixote'>
+        <h1 class="score">0</h1>
     </div>
     <style>
+        .score {
+            text-align: center;
+            color: green;
+        }
+        
         html {
             height: 100%;
             overflow: hidden;
@@ -23,14 +29,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            /*background-color: #262627;*/
         }
         
         .canvas {
             width: 80%;
             height: 80vh;
-            border: 1px solid #333;
             overflow: hidden;
             position: relative;
+            background-color: aqua;
+            border: 2px solid black;
+            border-bottom: 25px solid black;
         }
         
         .skatista {
@@ -42,15 +51,15 @@
         }
         
         .jump {
-            animation: jump 1s ease-out;
+            animation: jump 1s linear;
         }
         
         .caixote {
             width: 70px;
             position: absolute;
             bottom: 0;
-            <!-- animation: caixote 5s linear infinite;
-            -->
+            left: 50px;
+            animation: caixote 2s linear infinite;
         }
         
         @keyframes jump {
@@ -58,13 +67,10 @@
                 bottom: 0px
             }
             40% {
-                bottom: 80px
+                bottom: 100px
             }
             50% {
-                bottom: 90px
-            }
-            60% {
-                bottom: 80px
+                bottom: 100px
             }
             100% {
                 bottom: 0px
@@ -80,7 +86,46 @@
             }
         }
     </style>
-    <script></script>
+    <script>
+        const skatista = document.querySelector('.skatista');
+        const caixote = document.querySelector('.caixote');
+        const score = document.querySelector('.score');
+
+
+        const jump = () => {
+            skatista.classList.add('jump');
+
+            setTimeout(() => {
+                skatista.classList.remove('jump');
+            }, 1000);
+        };
+        document.addEventListener('keydown', jump);
+
+
+
+        const loop = setInterval(() => {
+            const caixotepos = +window.getComputedStyle(caixote).left.replace('px', '');
+            const skatistapos = +window.getComputedStyle(skatista).bottom.replace('px', '');
+
+            /*if (skatistapos === 0) {
+                const value = +score.innerHTML
+                score.innerHTML = (value + 1);
+            };*/
+
+
+            if (caixotepos <= 170 && skatistapos < 64 && caixotepos > 10) {
+                skatista.src = '/dead.png';
+                score.style.color = 'red'
+                skatista.style.width = '64px';
+                caixote.style.animation = 'none';
+                skatista.style.animation = 'none';
+                caixote.style.left = caixotepos + 'px';
+                skatista.style.bottom = skatistapos + 'px';
+
+
+            }
+        }, 10);
+    </script>
 </body>
 
 </html>
